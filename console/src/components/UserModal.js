@@ -14,10 +14,13 @@ const UserModal = ({ visible, onCancel, onOk, editingUser, loading }) => {
     }
   }, [visible, editingUser, form]);
 
-  const handleOk = () => {
-    form.validateFields().then((values) => {
+  const handleOk = async () => {
+    try {
+      const values = await form.validateFields(); // Değişiklik
       onOk(values);
-    });
+    } catch (error) {
+      console.error("Validation Failed:", error);
+    }
   };
 
   return (
