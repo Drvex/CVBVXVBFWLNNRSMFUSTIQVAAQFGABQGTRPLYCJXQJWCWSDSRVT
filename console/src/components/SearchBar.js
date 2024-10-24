@@ -6,7 +6,7 @@ const SearchBar = ({ onSearch }) => {
     <Input.Search
       placeholder="Search by name or surname"
       onSearch={onSearch}
-      style={{ marginBottom: 20, width: "80%" }}
+      style={{ marginBottom: 20, width: "45%" }}
     />
   );
 };

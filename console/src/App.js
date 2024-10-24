@@ -151,23 +151,26 @@ class App extends React.PureComponent {
     } = this.state;
 
     return (
-      <div className="app-container">
+      <div
+        className="app-container"
+        style={{ padding: "24px", background: "#f0f2f5" }}
+      >
         <Row gutter={[24, 24]}>
           <Col span={24}>
-            <Card className="header-card">
+            <Card bordered={false}>
               <Row justify="space-between" align="middle">
                 <Col>
-                  <Title level={2} className="page-title">
+                  <Title level={2} style={{ margin: 0, color: "#1890ff" }}>
                     User Management
                   </Title>
                 </Col>
                 <Col>
-                  <Space>
+                  <Space size="middle">
                     <Button
+                      type="default"
                       icon={<ReloadOutlined />}
                       onClick={this.fetchData}
                       loading={loading}
-                      style={{ marginRight: 8 }}
                     >
                       Refresh
                     </Button>
@@ -192,52 +195,92 @@ class App extends React.PureComponent {
           <Col span={24}>
             <Row gutter={[16, 16]}>
               <Col xs={24} sm={8}>
-                <Card className="stats-card">
-                  <Text type="secondary">Total Users</Text>
-                  <Title level={3}>{stats.total}</Title>
+                <Card
+                  bordered={false}
+                  style={{
+                    height: "100%",
+                    background:
+                      "linear-gradient(135deg, #1890ff11 0%, #1890ff05 100%)",
+                  }}
+                >
+                  <Text type="secondary" style={{ fontSize: "16px" }}>
+                    Total Users
+                  </Text>
+                  <Title
+                    level={2}
+                    style={{ margin: "8px 0 0", color: "#1890ff" }}
+                  >
+                    {stats.total}
+                  </Title>
                 </Card>
               </Col>
               <Col xs={24} sm={8}>
-                <Card className="stats-card">
-                  <Text type="secondary">Admins</Text>
-                  <Title level={3}>{stats.admins}</Title>
+                <Card
+                  bordered={false}
+                  style={{
+                    height: "100%",
+                    background:
+                      "linear-gradient(135deg, #52c41a11 0%, #52c41a05 100%)",
+                  }}
+                >
+                  <Text type="secondary" style={{ fontSize: "16px" }}>
+                    Admins
+                  </Text>
+                  <Title
+                    level={2}
+                    style={{ margin: "8px 0 0", color: "#52c41a" }}
+                  >
+                    {stats.admins}
+                  </Title>
                 </Card>
               </Col>
               <Col xs={24} sm={8}>
-                <Card className="stats-card">
-                  <Text type="secondary">Users</Text>
-                  <Title level={3}>{stats.users}</Title>
+                <Card
+                  bordered={false}
+                  style={{
+                    height: "100%",
+                    background:
+                      "linear-gradient(135deg, #722ed111 0%, #722ed105 100%)",
+                  }}
+                >
+                  <Text type="secondary" style={{ fontSize: "16px" }}>
+                    Users
+                  </Text>
+                  <Title
+                    level={2}
+                    style={{ margin: "8px 0 0", color: "#722ed1" }}
+                  >
+                    {stats.users}
+                  </Title>
                 </Card>
               </Col>
             </Row>
           </Col>
 
           <Col span={24}>
-            <Card>
+            <Card bordered={false}>
               <Row gutter={[16, 16]}>
-                <Col span={24} style={{ flexDirection: "row", display: "flex" }}>
+                <Col
+                  span={24}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
                   <SearchBar onSearch={this.handleSearch} />
-                  <Space
-                    style={{
-                      marginBottom: 16,
-                      marginLeft: "auto",
-                      display: "flex",
-                      justifyContent: "right",
-                    }}
+                  <Radio.Group
+                    value={pageSize}
+                    onChange={this.handlePageSizeChange}
+                    optionType="button"
                   >
-                    <Radio.Group
-                      value={pageSize}
-                      onChange={this.handlePageSizeChange}
-                    >
-                      <Radio.Button value={2}>2</Radio.Button>
-                      <Radio.Button value={5}>5</Radio.Button>
-                      <Radio.Button value={10}>10</Radio.Button>
-                    </Radio.Group>
-                  </Space>
+                    <Radio.Button value={2}>2</Radio.Button>
+                    <Radio.Button value={5}>5</Radio.Button>
+                    <Radio.Button value={10}>10</Radio.Button>
+                  </Radio.Group>
                 </Col>
                 <Col span={24}>
                   {loading ? (
-                    <div style={{ justifySelf: "center" }}>
+                    <div style={{ textAlign: "center", padding: "50px 0" }}>
                       <Loader />
                     </div>
                   ) : (
@@ -254,6 +297,7 @@ class App extends React.PureComponent {
                         total: totalUsers,
                         onChange: this.handlePageChange,
                         showTotal: (total) => `Total ${total} users`,
+                        showSizeChanger: false,
                       }}
                     />
                   )}
