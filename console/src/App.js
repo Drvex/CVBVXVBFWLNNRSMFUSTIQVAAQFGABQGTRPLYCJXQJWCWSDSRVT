@@ -158,7 +158,7 @@ class App extends React.PureComponent {
               <Row justify="space-between" align="middle">
                 <Col>
                   <Title level={2} className="page-title">
-                    User Management Console
+                    User Management
                   </Title>
                 </Col>
                 <Col>
