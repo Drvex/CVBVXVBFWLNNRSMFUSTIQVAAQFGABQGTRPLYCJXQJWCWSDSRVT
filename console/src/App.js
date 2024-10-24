@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, Row, Col, Typography, Space } from "antd";
+import { Button, Card, Row, Col, Typography, Space, Radio } from "antd";
 import { UserAddOutlined, ReloadOutlined } from "@ant-design/icons";
 import "antd/dist/antd";
 import "./scss/app.scss";
@@ -106,6 +106,11 @@ class App extends React.PureComponent {
     this.setState({ currentPage: page, pageSize }, this.fetchData);
   };
 
+  handlePageSizeChange = (e) => {
+    const pageSize = e.target.value;
+    this.setState({ pageSize, currentPage: 1 }, this.fetchData);
+  };
+
   render() {
     const {
       isModalVisible,
@@ -172,7 +177,7 @@ class App extends React.PureComponent {
               </Col>
               <Col xs={24} sm={8}>
                 <Card className="stats-card">
-                  <Text type="secondary">Regular Users</Text>
+                  <Text type="secondary">Users</Text>
                   <Title level={3}>{stats.users}</Title>
                 </Card>
               </Col>
@@ -186,8 +191,27 @@ class App extends React.PureComponent {
                   <SearchBar onSearch={this.handleSearch} />
                 </Col>
                 <Col span={24}>
+                  <Space
+                    style={{
+                      marginBottom: 16,
+                      marginLeft: "auto",
+                      display: "flex",
+                      justifyContent: "right",
+                    }}
+                  >
+                    <Radio.Group
+                      value={pageSize}
+                      onChange={this.handlePageSizeChange}
+                    >
+                      <Radio.Button value={2}>2</Radio.Button>
+                      <Radio.Button value={5}>5</Radio.Button>
+                      <Radio.Button value={10}>10</Radio.Button>
+                    </Radio.Group>
+                  </Space>
                   {loading ? (
-                    <Loader />
+                    <div style={{ justifySelf: "center" }}>
+                      <Loader />
+                    </div>
                   ) : (
                     <UserTable
                       data={data}
