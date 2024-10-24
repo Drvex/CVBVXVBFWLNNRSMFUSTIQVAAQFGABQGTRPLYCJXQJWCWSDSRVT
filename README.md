@@ -7,7 +7,6 @@ Modern ve kullanıcı dostu bir arayüze sahip kullanıcı yönetim sistemi. Bu 
 - Kullanıcı listeleme ve arama
 - Kullanıcı ekleme/düzenleme/silme
 - Sayfalama ve sıralama
-- Rol bazlı kullanıcı yönetimi (Admin/User)
 - Gerçek zamanlı istatistikler
 - Responsive tasarım
 
@@ -73,10 +72,14 @@ src/
 ## 🔍 API Endpoints
 
 ```
-GET    /api/users      # Kullanıcıları listele
-POST   /api/users      # Yeni kullanıcı ekle
-PUT    /api/users/:id  # Kullanıcı güncelle
-DELETE /api/users/:id  # Kullanıcı sil
+GET    /users      # Kullanıcıları listele
+
+GET   /users/:id      # Kullanıcı Getir
+
+POST   /users/save      # Yeni kullanıcı ekle
+
+POST    /users/update/:id  # Kullanıcı güncelle
+DELETE /users/:id  # Kullanıcı sil
 ```
 
 ## 🛟 Hata Giderme
