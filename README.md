@@ -72,14 +72,11 @@ src/
 ## 🔍 API Endpoints
 
 ```
-GET    /users      # Kullanıcıları listele
-
-GET   /users/:id      # Kullanıcı Getir
-
-POST   /users/save      # Yeni kullanıcı ekle
-
-POST    /users/update/:id  # Kullanıcı güncelle
-DELETE /users/:id  # Kullanıcı sil
+GET     /users              # Kullanıcıları listele
+GET     /users/:id          # Kullanıcı Getir
+POST    /users/save         # Yeni kullanıcı ekle
+POST    /users/update/:id   # Kullanıcı güncelle
+DELETE  /users/:id          # Kullanıcı sil
 ```
 
 ## 🛟 Hata Giderme
