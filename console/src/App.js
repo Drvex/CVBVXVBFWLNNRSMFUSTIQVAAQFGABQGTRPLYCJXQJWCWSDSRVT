@@ -27,6 +27,8 @@ class App extends React.PureComponent {
       admins: 0,
       users: 0,
     },
+    sortedColumn: null,
+    sortOrder: null,
   };
 
   componentDidMount() {
@@ -44,7 +46,7 @@ class App extends React.PureComponent {
   fetchData = async () => {
     try {
       this.setState({ loading: true });
-      const { searchTerm, currentPage, pageSize } = this.state;
+      const { searchTerm } = this.state;
       const response = await UserService.getUsers(searchTerm);
       const stats = this.calculateStats(response.users);
 
@@ -66,6 +68,29 @@ class App extends React.PureComponent {
 
   handleEdit = (user) => {
     this.setState({ editingUser: user, isModalVisible: true });
+  };
+
+  sortData = (key) => {
+    const { sortedColumn, sortOrder } = this.state;
+    const newSortOrder =
+      sortedColumn === key && sortOrder === "asc" ? "desc" : "asc";
+    const sortedData = [...this.state.data].sort((a, b) => {
+      if (newSortOrder === "asc") {
+        return typeof a[key] === "string"
+          ? a[key].localeCompare(b[key])
+          : a[key] - b[key];
+      } else {
+        return typeof b[key] === "string"
+          ? b[key].localeCompare(a[key])
+          : b[key] - a[key];
+      }
+    });
+
+    this.setState({
+      data: sortedData,
+      sortedColumn: key,
+      sortOrder: newSortOrder,
+    });
   };
 
   handleDelete = async (id) => {
@@ -121,6 +146,8 @@ class App extends React.PureComponent {
       currentPage,
       pageSize,
       stats,
+      sortedColumn,
+      sortOrder,
     } = this.state;
 
     return (
@@ -217,6 +244,9 @@ class App extends React.PureComponent {
                       data={data}
                       onEdit={this.handleEdit}
                       onDelete={this.handleDelete}
+                      onSort={this.sortData}
+                      sortedColumn={sortedColumn}
+                      sortOrder={sortOrder}
                       pagination={{
                         current: currentPage,
                         pageSize,

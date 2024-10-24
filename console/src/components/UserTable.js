@@ -1,17 +1,51 @@
 import React from "react";
 import { Table, Space, Button, Tooltip } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  CaretUpOutlined,
+  CaretDownOutlined,
+} from "@ant-design/icons";
 
-const UserTable = ({ data, onEdit, onDelete, pagination }) => {
+const UserTable = ({
+  data,
+  onEdit,
+  onDelete,
+  pagination,
+  onSort,
+  sortedColumn,
+  sortOrder,
+}) => {
   const columns = [
     {
-      title: "ID",
+      title: (
+        <span onClick={() => onSort("id")}>
+          ID
+          {sortedColumn === "id" && sortOrder === "asc" && (
+            <CaretUpOutlined style={{ marginLeft: 8 }} />
+          )}
+          {sortedColumn === "id" && sortOrder === "desc" && (
+            <CaretDownOutlined style={{ marginLeft: 8 }} />
+          )}
+          {!sortedColumn && <CaretDownOutlined style={{ marginLeft: 8 }} />}
+        </span>
+      ),
       dataIndex: "id",
       key: "id",
       width: 80,
     },
     {
-      title: "Name",
+      title: (
+        <span onClick={() => onSort("name")}>
+          Name
+          {sortedColumn === "name" && sortOrder === "asc" && (
+            <CaretUpOutlined style={{ marginLeft: 8 }} />
+          )}
+          {sortedColumn === "name" && sortOrder === "desc" && (
+            <CaretDownOutlined style={{ marginLeft: 8 }} />
+          )}
+        </span>
+      ),
       dataIndex: "name",
       key: "name",
       render: (text, record) => `${text} ${record.surname}`,
