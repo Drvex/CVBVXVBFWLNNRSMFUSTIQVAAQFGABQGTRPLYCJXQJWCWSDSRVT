@@ -167,6 +167,7 @@ class App extends React.PureComponent {
                       icon={<ReloadOutlined />}
                       onClick={this.fetchData}
                       loading={loading}
+                      style={{ marginRight: 8 }}
                     >
                       Refresh
                     </Button>
@@ -214,10 +215,8 @@ class App extends React.PureComponent {
           <Col span={24}>
             <Card>
               <Row gutter={[16, 16]}>
-                <Col span={24}>
+                <Col span={24} style={{ flexDirection: "row", display: "flex" }}>
                   <SearchBar onSearch={this.handleSearch} />
-                </Col>
-                <Col span={24}>
                   <Space
                     style={{
                       marginBottom: 16,
@@ -235,6 +234,8 @@ class App extends React.PureComponent {
                       <Radio.Button value={10}>10</Radio.Button>
                     </Radio.Group>
                   </Space>
+                </Col>
+                <Col span={24}>
                   {loading ? (
                     <div style={{ justifySelf: "center" }}>
                       <Loader />
