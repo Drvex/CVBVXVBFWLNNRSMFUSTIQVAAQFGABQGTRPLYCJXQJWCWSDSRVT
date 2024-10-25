@@ -20,8 +20,8 @@ Modern ve kullanıcı dostu bir arayüze sahip kullanıcı yönetim sistemi. Bu 
 1. Projeyi klonlayın
 
 ```bash
-git clone [https://github.com/Drvex/CVBVXVBFWLNNRSMFUSTIQVAAQFGABQGTRPLYCJXQJWCWSDSRVT]
-cd [CVBVXVBFWLNNRSMFUSTIQVAAQFGABQGTRPLYCJXQJWCWSDSRVT]
+git clone https://github.com/Drvex/CVBVXVBFWLNNRSMFUSTIQVAAQFGABQGTRPLYCJXQJWCWSDSRVT
+cd CVBVXVBFWLNNRSMFUSTIQVAAQFGABQGTRPLYCJXQJWCWSDSRVT
 ```
 
 2. Bağımlılıkları yükleyin
@@ -42,6 +42,9 @@ npm start
 - Ant Design
 - SCSS
 - Axios (API istekleri için)
+- Nest.js
+- Node.js
+- Postgresql
 
 ## 📁 Proje Yapısı
 
